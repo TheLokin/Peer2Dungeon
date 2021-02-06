@@ -1,0 +1,22 @@
+@startuml ComponentDiagram
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+
+LAYOUT_LEFT_RIGHT
+
+Container_Boundary(node, "Node") { 
+  Component(moduleAdmin, "Admin Module", "Manage")
+  Component(moduleGamer, "Player Module", "Play")
+  Component(moduleRoom, "Room Module", "Room")
+
+  Rel(moduleAdmin, moduleGamer, "Return", "answer")
+  Rel(moduleGamer, moduleAdmin, "Makes", "request")
+
+  Rel(moduleRoom, moduleGamer, "Return", "answer")
+  Rel(moduleGamer, moduleRoom, "Makes", "request")
+
+  Rel(moduleRoom, moduleAdmin, "Makes", "request")
+  Rel(moduleAdmin, moduleRoom, "Return", "answer")
+}
+
+@enduml

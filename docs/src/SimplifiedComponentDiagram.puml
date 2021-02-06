@@ -1,0 +1,17 @@
+@startuml SimplifiedComponentDiagram
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+
+LAYOUT_LEFT_RIGHT
+
+Container_Boundary(node, "Node") { 
+  Component(moduleAdmin, "Admin Module", "Manage")
+  Component(moduleGamer, "Player Module", "Play")
+  Component(moduleRoom, "Room Module", "Room")
+
+  Rel(moduleGamer, moduleAdmin, "Makes", "synchronous request")
+  Rel(moduleGamer, moduleRoom, "Makes", "synchronous request")
+  Rel(moduleRoom, moduleAdmin, "Makes", "synchronous request")
+}
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml ContainerDiagram
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+
+System_Ext(client, "Client")
+
+System_Boundary(peer2dungeon, "Peer2Dungeon") {
+  Container_Boundary(noden, "Node n") { 
+    Component(peern, "Peer Pn", "Receives requests, processes them and returns a response or redirects to a peer")
+  }
+  Container_Boundary(node1, "Node 1") { 
+    Component(peer1, "Peer P1", "Receives requests, processes them and returns a response or redirects to a peer")
+  }
+  Container_Boundary(node2, "Node 2") { 
+    Component(peer2, "Peer P2", "Receives requests, processes them and returns a response or redirects to a peer")
+  }
+}
+
+Rel(peern, client, "Return", "answer")
+Rel(client, peer2, "Send", "request")
+
+@enduml
